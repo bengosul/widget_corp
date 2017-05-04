@@ -1,7 +1,5 @@
 <?php require_once("../includes/db_connection.php"); ?>		
 <?php require_once("../includes/functions.php"); ?>		
-
-
 <?php include("../includes/layouts/header.php"); ?>		
 
 <div id="main">
@@ -38,15 +36,21 @@
 					confirm_query($page_set);
 				?>
 				<ul class="pages">
-			<?php
-			// 3. Use returned data (if any)
-			while($subject = mysqli_fetch_assoc($page_sett)){
-				//output data form each row
-		?>
-			<li>
-				<?php echo $subject["menu_name"]." (" . $subject["id"] . ")"; ?>
-		
-		
+					<?php
+					// 3. Use returned data (if any)
+					while($page = mysqli_fetch_assoc($page_set)){
+					//output data form each row
+					?>
+					<li>
+					<?php echo $page["menu_name"]; ?>
+					</li>
+					<?php		
+							}
+					?>
+					<?php
+						//4. Release returned data
+						mysqli_free_result($page_set);
+					?>
 				</ul>
 			</li>
 		<?php		
